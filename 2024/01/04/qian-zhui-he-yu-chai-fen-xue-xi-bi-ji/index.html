@@ -34,19 +34,21 @@
   <!-- feed -->
   <!-- 页面元数据 -->
   <title>前缀和与差分学习笔记 - Floze3's Blog</title>
-  <meta name="keywords" content="null">
+  <meta name="keywords" content="OI,学习笔记,null">
   <meta desc name="description" content="这是一名高中OIer的博客 - Floze3 - Floze3's Blog">
   
 <meta property="og:type" content="article">
 <meta property="og:title" content="前缀和与差分学习笔记">
 <meta property="og:url" content="http://floze3.github.io/2024/01/04/qian-zhui-he-yu-chai-fen-xue-xi-bi-ji/">
 <meta property="og:site_name" content="Floze3&#39;s Blog">
-<meta property="og:description" content="这是一名高中OIer的博客">
+<meta property="og:description" content="本来是不想写这篇博客的，但为了课前十分钟还是来水一发 前缀和简介继续引用OI-Wiki的话（OI-Wiki $yyds$ !）：  前缀和可以简单理解为「数列的前 $n$ 项的和」，是一种重要的预处理方式，能大大降低查询的时间复杂度。  也就是说，我们能使用 $O(n)$ 的时间进行预处理，在 $O(1)$ 的时间内求出数列的一段区间内所有数的和。 为什么要使用前缀和？假如我们有一段长为 $1e6">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-01-04T04:51:38.000Z">
-<meta property="article:modified_time" content="2024-01-04T04:51:38.155Z">
+<meta property="article:modified_time" content="2024-01-04T04:59:19.387Z">
 <meta property="article:author" content="Floze3">
+<meta property="article:tag" content="OI">
+<meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1628,7 +1630,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1704343994147),
+    lastupdate: new Date(1704344438415),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -2411,7 +2413,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
   <a itemprop="url" class='author' href="/" rel="nofollow">
     <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-    <p itemprop="name">请设置文章作者</p>
+    <p itemprop="name">Floze3</p>
   </a>
 </div>
 
@@ -2449,7 +2451,28 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    
+    <p><del>本来是不想写这篇博客的，但为了课前十分钟还是来水一发</del></p>
+<h1 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h1><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>继续引用OI-Wiki的话（OI-Wiki $yyds$ !）：</p>
+<blockquote>
+<p>前缀和可以简单理解为「数列的前 $n$ 项的和」，是一种重要的预处理方式，能大大降低查询的时间复杂度。</p>
+</blockquote>
+<p>也就是说，我们能使用 $O(n)$ 的时间进行预处理，在 $O(1)$ 的时间内求出数列的一段区间内所有数的和。</p>
+<h3 id="为什么要使用前缀和？"><a href="#为什么要使用前缀和？" class="headerlink" title="为什么要使用前缀和？"></a>为什么要使用前缀和？</h3><p>假如我们有一段长为 $1e6$ 的数列，有 $1e6$ 个询问，假如我们使用传统的方式，对每一个询问以一个一个相加的方式进行求和，那么最坏情况下这个程序要运行 $1e12$ 次，妥妥的 $TLE$ 。但是我们使用前缀和的话就可以免去这些操作了。</p>
+<h3 id="那么怎么做？"><a href="#那么怎么做？" class="headerlink" title="那么怎么做？"></a>那么怎么做？</h3><p>假设给出的数列为 $a$ ，我们可以构造出一个相应的数列 $sum$ ，其中第 $x$ 个元素的值为 $a$ 数列中 $1$ ~ $x$ 个元素的和，即：$ sum_x &#x3D; \sum\limits_{i &#x3D; 1} ^ x a_i$ 。<br>那么显然，如果我们要求出从第 $l$ 个元素到第 $r$ 个元素，只要求出 $sum_r - sum_{l - 1}$ 的值就可以了。<br>而 $sum$ 数列中每一个元素的值，我们可以用前一个元素的值加上 $a$ 数列中对应位置元素的值求的。特别地，$sum$ 数列中第一个元素的值就等于 $a$ 数列中第一个元素的值。<br>示范代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    cin &gt;&gt; a[i];</span><br><span class="line">    sum[i] = a[i] + sum[i - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(q--)&#123;</span><br><span class="line">    cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">    cout &lt;&lt; sum[r] - sum[l - <span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩展：二维前缀和"><a href="#扩展：二维前缀和" class="headerlink" title="扩展：二维前缀和"></a>扩展：二维前缀和</h2><p>前面我们的讨论都是在一个一位的数列上进行的，但如果题目给我们的是一个二维的矩阵，阁下又当如何应对？<br>显然的，我们同样可以构造一个矩阵 $sum$ 使得 $sum_{x, y} &#x3D; \sum\limits_{i &#x3D; 1} ^ x \sum\limits_{j &#x3D; 1} ^ y a_{i, j}$ 。怎么求出 $sum_{x, y}$ 的值呢？<br>首先，我们要加上 $a_{x, y}$ 的值。然后根据容斥原理，我们会重复加上一部分的前缀和，于是需要减去一部分。<br>如下图所示。我们要计算整块前缀和，就要先加上右下角这些，再加上左侧的所有前缀和和上面的前缀和。这时你会发现，我们把左上角的那一部分算了两次，于是我们减掉一次就好了。<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/926h0dnh.png" class="lazyload" data-srcset="https://cdn.luogu.com.cn/upload/image_hosting/926h0dnh.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><br>那么怎么查询特定块的前缀和呢？<br>再看下面这张图。我们现在要计算红色部分的前缀和，而红色部分的前缀和等于总的前缀和 $-$ 它正上方的前缀和（蓝色部分） $-$ 它左侧的前缀和（绿色部分） $-$ 它左上方的前缀和（黄色部分）。根据二位前缀和的定义，我们可以求得它左侧和左上方的总前缀和（绿色和黄色部分），它正上方和左上方的总前缀和（蓝色和黄色部分）。再次根据容斥原理，我们两次减去了黄色部分，应该加回一次。这就是红色部分的前缀和。<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/s7w5x8su.png" class="lazyload" data-srcset="https://cdn.luogu.com.cn/upload/image_hosting/s7w5x8su.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><br>下面是示范代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理前缀和</span></span><br><span class="line">cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">        cin &gt;&gt; a[i][j];</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">        sum[i][j] = sum[i - <span class="number">1</span>][j] + sum[i][j - <span class="number">1</span>] - sum[i - <span class="number">1</span>][j - <span class="number">1</span>] + a[i][j];</span><br><span class="line"><span class="comment">// 查询前缀和</span></span><br><span class="line"><span class="keyword">while</span>(q --)&#123;</span><br><span class="line">    <span class="type">int</span> l1, r1, l2, r2;</span><br><span class="line">    cin &gt;&gt; l1 &gt;&gt; r1 &gt;&gt; l2 &gt;&gt; r2;</span><br><span class="line">    cout &lt;&lt; sum[l2][r2] - sum[l1 - <span class="number">1</span>][r2] - sum[l2][r1 - <span class="number">1</span>] + sum[l1 - <span class="number">1</span>][r1 - <span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h1><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>再次引用OI-Wiki的话：</p>
+<blockquote>
+<p>差分是一种和前缀和相对的策略，可以当做是求和的逆运算。</p>
+</blockquote>
+<p>用人话来说，差分支持我们通过前缀和的方式，实现 $O(1)$ 对一个数列中一段区间元素的值进行修改，并且方便的得到每一个值。</p>
+<h3 id="为什么要使用差分"><a href="#为什么要使用差分" class="headerlink" title="为什么要使用差分"></a>为什么要使用差分</h3><p>同理，使用差分可以避免对数列中每个元素的值一个一个进行修改，使得程序的运行时间大大减少。</p>
+<h3 id="那么怎么做？-1"><a href="#那么怎么做？-1" class="headerlink" title="那么怎么做？"></a>那么怎么做？</h3><p>针对给出的数列 $a$ ，我们可以构造出一个数列 $b$ ，使得其中每一个元素的值都是 $a$ 数列中对应元素的值减去前一个元素的值，也就是 $b_i &#x3D; a_i - a_{i - 1}$<br>那么我们可以得出这样的一个式子：$a_x &#x3D; \sum\limits_{i &#x3D; 1} ^ x b_i$。很显然，我们可以利用前缀和求出 $a$ 中元素的值。<br>但这样显然没有任何优势，但是差分的优势在于对区间元素的修改。假如我们要给 $l$ 到 $r$ 之间的元素都加上一个值 $val$ ，我们只需要给 $b_l$ 的值加上 $val$ ，给 $b_{r + 1}$ 的值减去 $val$ 就可以了。<br>解释以下。根据差分的定义，给 $b_l$ 的值加上 $val$ 就相当于给 $a_l$ 到数列末尾元素的值都加上 $val$ ，那么给 $b_{r + 1}$ 减去 $val$ 就可以抵消其对于 $a_{r + 1}$ 到数列末尾的影响了。<br>示范代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    cin &gt;&gt; a[i];</span><br><span class="line">    b[i] = a[i] - a[i - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(q--)&#123;</span><br><span class="line">    cin &gt;&gt; l &gt;&gt; r &gt;&gt; val;</span><br><span class="line">    b[l] += val;</span><br><span class="line">    b[r + <span class="number">1</span>] -= val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    sum[i] = sum[i - <span class="number">1</span>] + b[i];</span><br><span class="line">    cout &lt;&lt; sum[i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
   </div>
   
   
@@ -2473,7 +2496,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-01-04T12:51:38+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-01-04T12:59:19+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2024年1月4日</p>
@@ -2484,6 +2507,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/OI/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>OI</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>学习笔记</p></a></div>
+  <span hidden itemprop="keywords">OI 学习笔记</span>
+
 
         
       
@@ -2605,9 +2632,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
 
 
-  <div class="">
-    <!-- pjax占位 -->
-  </div>
+  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
+    
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%BC%80%E5%92%8C%EF%BC%9F"><span class="toc-text">为什么要使用前缀和？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%A3%E4%B9%88%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%9F"><span class="toc-text">那么怎么做？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%EF%BC%9A%E4%BA%8C%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C"><span class="toc-text">扩展：二维前缀和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%B7%AE%E5%88%86"><span class="toc-text">为什么要使用差分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%A3%E4%B9%88%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%9F-1"><span class="toc-text">那么怎么做？</span></a></li></ol>
+    </div>
+  </section>
 
   
 
@@ -3175,7 +3212,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Floze3's Blog","url":"http://Floze3.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Floze3","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://Floze3.github.io/","sameAs":["https://github.com/volantis-x"],"description":"这是一名高中OIer的博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://Floze3.github.io/","name":"Floze3's Blog"}},{"@type":"ListItem","position":3,"item":{"@id":"http://Floze3.github.io/2024/01/04/qian-zhui-he-yu-chai-fen-xue-xi-bi-ji/","name":"前缀和与差分学习笔记"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Floze3's Blog","url":"http://Floze3.github.io/","keywords":null,"description":"这是一名高中OIer的博客","author":{"@type":"Person","name":"Floze3","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://Floze3.github.io/","description":"这是一名高中OIer的博客"},"publisher":{"@type":"Organization","name":"Floze3's Blog","url":"http://Floze3.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://Floze3.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"前缀和与差分学习笔记","description":"这是一名高中OIer的博客","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://floze3.github.io/2024/01/04/qian-zhui-he-yu-chai-fen-xue-xi-bi-ji/"},"author":{"@type":"Person","name":"Floze3","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://Floze3.github.io/"},"publisher":{"@type":"Organization","name":"Floze3's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://floze3.github.io/2024/01/04/qian-zhui-he-yu-chai-fen-xue-xi-bi-ji/","wordCount":0,"datePublished":"2024-01-04T04:51:38.000Z","dateModified":"2024-01-04T04:51:38.155Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Floze3's Blog","url":"http://Floze3.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Floze3","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://Floze3.github.io/","sameAs":["https://github.com/volantis-x"],"description":"这是一名高中OIer的博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://Floze3.github.io/","name":"Floze3's Blog"}},{"@type":"ListItem","position":3,"item":{"@id":"http://Floze3.github.io/2024/01/04/qian-zhui-he-yu-chai-fen-xue-xi-bi-ji/","name":"前缀和与差分学习笔记"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Floze3's Blog","url":"http://Floze3.github.io/","keywords":null,"description":"这是一名高中OIer的博客","author":{"@type":"Person","name":"Floze3","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://Floze3.github.io/","description":"这是一名高中OIer的博客"},"publisher":{"@type":"Organization","name":"Floze3's Blog","url":"http://Floze3.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://Floze3.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"前缀和与差分学习笔记","description":"这是一名高中OIer的博客","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http://floze3.github.io/2024/01/04/qian-zhui-he-yu-chai-fen-xue-xi-bi-ji/"},"author":{"@type":"Person","name":"Floze3","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://Floze3.github.io/"},"publisher":{"@type":"Organization","name":"Floze3's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://floze3.github.io/2024/01/04/qian-zhui-he-yu-chai-fen-xue-xi-bi-ji/","wordCount":0,"datePublished":"2024-01-04T04:51:38.000Z","dateModified":"2024-01-04T04:59:19.387Z","keywords":"OI,学习笔记","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
