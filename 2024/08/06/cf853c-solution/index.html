@@ -13,24 +13,27 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://Floze3.github.io/2024/08/06/dsu/"/>
+    <link rel="canonical" href="http://Floze3.github.io/2024/08/06/cf853c-solution/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="简介这里引用OI-wiki上的内容：  并查集是一种用于管理元素所属集合的数据结构，实现为一个森林，其中每棵树表示一个集合，树中的节点表示对应集合中的元素。顾名思义，并查集支持两种操作：合并（Union）：合并两个元素所属集合（合并对应的树）查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合  看不懂？ 简单来说，并查集就是一种简单的判断两个元素">
+        <meta name="description" content="传送门  思路简述这里给出一个较为暴力，但想与写都比较方便的方法。 对于每一个矩形的询问，为了不重不漏，我们可以以矩形的四条边为参考，将整个大矩形划分为  个小矩形，如下图（其中黑色小矩形为询问的矩形）：  我们统计出每个小矩形内部的黑点个数，记为 ，那么我们可以得出与这个矩形有公共点的好的矩阵的计算公式： $$S_1 \times (S_5 + S_6 + S_8 + S_9) + S_2 *">
 <meta property="og:type" content="article">
-<meta property="og:title" content="并查集学习笔记">
-<meta property="og:url" content="http://floze3.github.io/2024/08/06/dsu/index.html">
+<meta property="og:title" content="题解：CF853C Boredom">
+<meta property="og:url" content="http://floze3.github.io/2024/08/06/cf853c-solution/index.html">
 <meta property="og:site_name" content="Floze3&#39;s Blog">
-<meta property="og:description" content="简介这里引用OI-wiki上的内容：  并查集是一种用于管理元素所属集合的数据结构，实现为一个森林，其中每棵树表示一个集合，树中的节点表示对应集合中的元素。顾名思义，并查集支持两种操作：合并（Union）：合并两个元素所属集合（合并对应的树）查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合  看不懂？ 简单来说，并查集就是一种简单的判断两个元素">
+<meta property="og:description" content="传送门  思路简述这里给出一个较为暴力，但想与写都比较方便的方法。 对于每一个矩形的询问，为了不重不漏，我们可以以矩形的四条边为参考，将整个大矩形划分为  个小矩形，如下图（其中黑色小矩形为询问的矩形）：  我们统计出每个小矩形内部的黑点个数，记为 ，那么我们可以得出与这个矩形有公共点的好的矩阵的计算公式： $$S_1 \times (S_5 + S_6 + S_8 + S_9) + S_2 *">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-06T01:40:35.000Z">
-<meta property="article:modified_time" content="2024-08-06T10:43:47.734Z">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/j4mwb4m2.png">
+<meta property="article:published_time" content="2024-08-06T10:50:09.000Z">
+<meta property="article:modified_time" content="2024-08-06T10:57:48.236Z">
 <meta property="article:author" content="Floze3">
 <meta property="article:tag" content="OI">
-<meta property="article:tag" content="并查集">
+<meta property="article:tag" content="Codeforces">
+<meta property="article:tag" content="二维数点">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/j4mwb4m2.png">
     
     
     <!--- Icon Part-->
@@ -42,7 +45,7 @@
     
     <title>
         
-            并查集学习笔记 -
+            题解：CF853C Boredom -
         
         Floze3&#39;s Blog
     </title>
@@ -108,7 +111,119 @@
     
     
     
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -549,7 +664,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">并查集学习笔记</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">题解：CF853C Boredom</h1>
                 </div>
             
             </div>
@@ -570,15 +685,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-08-06 09:40:35</span>
-        <span class="mobile">2024-08-06 09:40:35</span>
+        <span class="desktop">2024-08-06 18:50:09</span>
+        <span class="mobile">2024-08-06 18:50:09</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-06 18:43:47</span>
-            <span class="mobile">2024-08-06 18:43:47</span>
+            <span class="desktop">2024-08-06 18:57:48</span>
+            <span class="mobile">2024-08-06 18:57:48</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -592,7 +707,7 @@
                     
                         
                         <li>
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>&nbsp;
+                            <a href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>&nbsp;
                         </li>
                     
                     
@@ -610,7 +725,11 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>&nbsp;
+                        | <a href="/tags/Codeforces/">Codeforces</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%82%B9/">二维数点</a>&nbsp;
                     </li>
                 
             </ul>
@@ -620,12 +739,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.6k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>744 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>6 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 分钟</span>
         </span>
     
     
@@ -644,75 +763,37 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这里引用OI-wiki上的内容：</p>
-<blockquote>
-<p>并查集是一种用于管理元素所属集合的数据结构，实现为一个森林，其中每棵树表示一个集合，树中的节点表示对应集合中的元素。<br>顾名思义，并查集支持两种操作：<br>合并（Union）：合并两个元素所属集合（合并对应的树）<br>查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合</p>
-</blockquote>
-<p>看不懂？</p>
-<p>简单来说，并查集就是一种简单的判断两个元素是否在同一个集合中，或者说，有相同的“祖先”。并查集支持查讯，合并等操作。</p>
-<p>并查集的基本逻辑可以做个类比：拜师！假设有两个习武之人要比拼比拼，可能在现实生活中他们会打一打，但是在并查集的逻辑中，他们是叫他们的师傅（也就是术语中的“祖先”）来比拼一番。输了的那一方将会带着这一派整个加入到另一个老师傅的帮派中。</p>
-<h2 id="示范代码"><a href="#示范代码" class="headerlink" title="示范代码"></a>示范代码</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3367" >并查集模板题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>首先，我们要有一个用来记录每个元素祖先的数组fa，在一开始，每个元素的祖先就是它本身，于是我们可以写出代码：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123; <span class="comment">// 本人习惯用函数来初始化</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) fa[i] = i;</span><br><span class="line">	&#125;<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>但是题目的要求不止这些，我们先来实现查询每个元素的祖先。我们可以知道，如果一个元素没有被合并，那么它的祖先一定是自己。那么我们可以不断查找某个元素的直接祖先是谁，再查找那个元素的祖先，直到那个元素的祖先是它本身为止。</p>
-<p>同时为了优化，我们可以在查找的过程中将中途所经历的元素的祖先直接设为最后的祖先，也就是修为高深的老师傅。因为总体来说这些元素仍处于最终的祖先的管理之下，所以不会导致混乱：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (fa[x] == x) <span class="keyword">return</span> x; <span class="comment">// 找到了祖先</span></span><br><span class="line">  <span class="keyword">return</span> fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>或者用三元运算符的形式：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x == fa[x] ? x : fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>并查集的合并操作，说难也不难，就是修改每个元素在fa数组里的值即可，那么我们可以写出以下代码：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">  <span class="type">int</span> fx = <span class="built_in">find</span>(x), fy = <span class="built_in">find</span>(y); <span class="comment">// 查找两个元素的祖先</span></span><br><span class="line">  <span class="keyword">if</span> (fx == fy) <span class="keyword">return</span> ; <span class="comment">// 在同一个集合中就跳过</span></span><br><span class="line">  fa[fx] = fy;</span><br><span class="line">  <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>那么最终可以写出代码：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, fa[<span class="number">10005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) fa[i] = i;</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (fa[x] == x) <span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> fx = <span class="built_in">find</span>(x), fy = <span class="built_in">find</span>(y);</span><br><span class="line">	<span class="keyword">if</span> (fx == fy) <span class="keyword">return</span> ;</span><br><span class="line">	fa[fx] = fy;</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="type">int</span> z, x, y;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">		cin &gt;&gt; z &gt;&gt; x &gt;&gt; y;</span><br><span class="line">		<span class="keyword">if</span> (z == <span class="number">1</span>) <span class="built_in">merge</span>(x, y);</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">find</span>(x) == <span class="built_in">find</span>(y)) cout &lt;&lt; <span class="string">&quot;Y&quot;</span> &lt;&lt; endl;</span><br><span class="line">			<span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;N&quot;</span> &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>练习题：</p>
+            <p><a class="link" target="_blank" rel="noopener" href="http://codeforces.com/problemset/problem/853/C">传送门 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="思路简述"><a href="#思路简述" class="headerlink" title="思路简述"></a>思路简述</h2><p>这里给出一个较为暴力，但想与写都比较方便的方法。</p>
+<p>对于每一个矩形的询问，为了不重不漏，我们可以以矩形的四条边为参考，将整个大矩形划分为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path></g></g></g></svg></mjx-container> 个小矩形，如下图（其中黑色小矩形为询问的矩形）：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.luogu.com.cn/upload/image_hosting/j4mwb4m2.png"></p>
+<p>我们统计出每个小矩形内部的黑点个数，记为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.127ex" height="1.952ex" role="img" focusable="false" viewBox="0 -705 940 862.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g><g data-mml-node="mi" transform="translate(646,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg></mjx-container>，那么我们可以得出与这个矩形有公共点的好的矩阵的计算公式：</p>
+<p>$$<br>S_1 \times (S_5 + S_6 + S_8 + S_9) + S_2 * (S_4 + S_5 + S_6 + S_7 + S_8 + S_9) \</p>
 <ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1551" >P1551 亲戚 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3144" >P3144 [USACO16OPEN] Closing the Farm S <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1955" >P1955 [NOI2015] 程序自动分析 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li>S_3 \times (S_4 + S_5 + S_7 + S_8) + S_4 \times (S_5 + S_6 + S_8 + S_9) \</li>
+<li>S_5 \times (S_6 + S_7 + S_8 + S_9) + S_6 \times(S_7 + S_8)  + S_5 \times (S_5 - 1) \div 2<br>$$</li>
 </ul>
-<h2 id="带权并查集"><a href="#带权并查集" class="headerlink" title="带权并查集"></a>带权并查集</h2><p>我们可以在并查集的边上定义某种权值（比如大小，长度等）来解决更多的问题。</p>
-<p>来看<a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1196" >P1196 [NOI2002] 银河英雄传说 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>这道题。在这道题中，我们要实现合并和查询两种操作。我们可以想到维护每个舰队的长度，但为了更精确的描述两艘战舰之间的距离，我们还要维护每艘战舰到队列头部的距离。所以我们不难写出以下代码：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> t, fa[<span class="number">30005</span>], a, b, l[<span class="number">30005</span>], front[<span class="number">30005</span>];</span><br><span class="line"><span class="type">char</span> op;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (fa[x] == x) <span class="keyword">return</span> x;</span><br><span class="line">	<span class="type">int</span> k = fa[x]; <span class="comment">// 要先保存下来父节点</span></span><br><span class="line">	fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">	front[x] += front[k]; <span class="comment">// 更新当前战舰到队列头部的距离</span></span><br><span class="line">	l[x] = l[fa[x]]; <span class="comment">// 更新队列长度</span></span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; t;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">30000</span>; i++)&#123;</span><br><span class="line">		fa[i] = i;</span><br><span class="line">		l[i] = <span class="number">1</span>;</span><br><span class="line">		front[i] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		cin &gt;&gt; op &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		<span class="keyword">if</span> (op == <span class="string">&#x27;M&#x27;</span>)&#123;</span><br><span class="line">			<span class="type">int</span> x = <span class="built_in">find</span>(a), y = <span class="built_in">find</span>(b);</span><br><span class="line">			<span class="keyword">if</span> (x == y) <span class="keyword">continue</span>;</span><br><span class="line">			fa[x] = y; <span class="comment">// 进行合并操作</span></span><br><span class="line">			front[x] += l[y]; <span class="comment">// 修改原来队列头部的战舰到新的队列头部的距离</span></span><br><span class="line">			l[x] += l[y]; <span class="comment">// 更新队列长度</span></span><br><span class="line">			l[y] = l[x];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> x = <span class="built_in">find</span>(a), y = <span class="built_in">find</span>(b);</span><br><span class="line">			<span class="keyword">if</span> (x != y) cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">			<span class="keyword">else</span> cout &lt;&lt; <span class="built_in">abs</span>(front[a] - front[b]) - <span class="number">1</span>&lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>练习题：</p>
-<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1455" >P1455 搭配购买 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3958" >P3958 [NOIP2017 提高组] 奶酪 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5092" >P5092 [USACO04OPEN] Cube Stacking <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-</ul>
-<h2 id="种类并查集"><a href="#种类并查集" class="headerlink" title="种类并查集"></a>种类并查集</h2><p>种类并查集适用于拥有对称关系的题目，比如敌人的敌人是朋友之类的。解决这种问题，我们一般会把这种关系所指代的对象建立一个虚拟的节点，然后再把满足这个关系的节点与这个虚拟节点进行合并。</p>
-<p>比如<a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1892" >P1892 [BOI2003] 团伙 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>这道题，我们可以对每个人的敌人建立一个虚拟节点，然后将具有敌对关系的人与虚拟节点进行合并即可。不难写出这样的代码：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, fa[<span class="number">2010</span>], m, p, q;</span><br><span class="line"><span class="type">char</span> opt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n * <span class="number">2</span>; i++) fa[i] = i; <span class="comment">// 注意初始化节点的规模要扩大一倍</span></span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x == fa[x]) <span class="keyword">return</span> fa[x];</span><br><span class="line">	<span class="keyword">return</span> fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">find</span>(x) == <span class="built_in">find</span>(y)) <span class="keyword">return</span> ;</span><br><span class="line">	fa[<span class="built_in">find</span>(x)] = <span class="built_in">find</span>(y);</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">		cin &gt;&gt; opt &gt;&gt; p &gt;&gt; q;</span><br><span class="line">		<span class="keyword">if</span> (opt == <span class="string">&#x27;F&#x27;</span>)&#123;</span><br><span class="line">			<span class="built_in">merge</span>(p, q);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;<span class="comment">// 节点i的敌人为i + n</span></span><br><span class="line">			<span class="built_in">merge</span>(q + n, p);</span><br><span class="line">			<span class="built_in">merge</span>(p + n, q);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="keyword">if</span> (fa[i] == i) cnt++;</span><br><span class="line">	cout &lt;&lt; cnt;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>练习题：</p>
-<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_abc327_d" >[ABC327D] Good Tuple Problem <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1525" >P1525 [NOIP2010 提高组] 关押罪犯 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2024" >P2024 [NOI2001] 食物链 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-</ul>
-
+<p>那么只要把询问离线下来跑二维数点即可。</p>
+<p>由于要把一个询问拆成 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path></g></g></g></svg></mjx-container> 个询问，理论上常数会很大，但实际上跑起来还挺快？</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mp(x, y) std::make_pair(x, y)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> eb emplace_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> il inline</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> file(name)                 \</span></span><br><span class="line"><span class="meta">  freopen(name <span class="string">".in"</span>, <span class="string">"r"</span>, stdin); \</span></span><br><span class="line"><span class="meta">  freopen(name <span class="string">".out"</span>, <span class="string">"w"</span>, stdout);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">int</span> uint;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> std::pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> std::vector&lt;<span class="type">int</span>&gt; vi;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod = <span class="number">998244353</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> inf = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="type">const</span> ll infll = <span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, q, b[N], t[N], res[N][<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function">il <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> v)</span> </span>{</span><br><span class="line">  <span class="keyword">for</span> (; p &lt;= n; p += p &amp; -p) t[p] += v;</span><br><span class="line">  <span class="keyword">return</span> ;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function">il <span class="type">int</span> <span class="title">ask</span><span class="params">(<span class="type">int</span> p)</span> </span>{</span><br><span class="line">  <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (; p; p -= p &amp; -p) res += t[p];</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">query</span> {</span><br><span class="line">  <span class="type">int</span> x, y, id, type;</span><br><span class="line">} qu[<span class="number">10</span> * N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  std::ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">  std::cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>), std::cout.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line">  std::cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    std::cin &gt;&gt; x;</span><br><span class="line">    b[x] = i;</span><br><span class="line">  }</span><br><span class="line">  <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= q; ++i) {</span><br><span class="line">    <span class="type">int</span> l, d, r, u;</span><br><span class="line">    std::cin &gt;&gt; l &gt;&gt; d &gt;&gt; r &gt;&gt; u;</span><br><span class="line">    qu[++cnt] = {n, l - <span class="number">1</span>, i, <span class="number">1</span>};</span><br><span class="line">    qu[++cnt] = {u, l - <span class="number">1</span>, i, <span class="number">2</span>};</span><br><span class="line">    qu[++cnt] = {d - <span class="number">1</span>, l - <span class="number">1</span>, i, <span class="number">3</span>};</span><br><span class="line">    qu[++cnt] = {n, r, i, <span class="number">4</span>};</span><br><span class="line">    qu[++cnt] = {u, r, i, <span class="number">5</span>};</span><br><span class="line">    qu[++cnt] = {d - <span class="number">1</span>, r, i, <span class="number">6</span>};</span><br><span class="line">    qu[++cnt] = {n, n, i, <span class="number">7</span>};</span><br><span class="line">    qu[++cnt] = {u, n, i, <span class="number">8</span>};</span><br><span class="line">    qu[++cnt] = {d - <span class="number">1</span>, n, i, <span class="number">9</span>};</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) qu[++cnt] = {i, b[i], <span class="number">0</span>, <span class="number">0</span>};</span><br><span class="line">  std::<span class="built_in">sort</span>(qu + <span class="number">1</span>, qu + <span class="number">1</span> + cnt, [](query x, query y) {</span><br><span class="line">    <span class="keyword">return</span> x.x ^ y.x ? x.x &lt; y.x : x.id &lt; y.id;</span><br><span class="line">  });</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= cnt; ++i) {</span><br><span class="line">    <span class="keyword">if</span> (!qu[i].id) <span class="built_in">add</span>(qu[i].y, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> res[qu[i].id][qu[i].type] = <span class="built_in">ask</span>(qu[i].y);</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= q; ++i) {</span><br><span class="line">    <span class="type">int</span> s1 = res[i][<span class="number">1</span>] - res[i][<span class="number">2</span>];</span><br><span class="line">    <span class="type">int</span> s2 = res[i][<span class="number">2</span>] - res[i][<span class="number">3</span>];</span><br><span class="line">    <span class="type">int</span> s3 = res[i][<span class="number">3</span>];</span><br><span class="line">    <span class="type">int</span> s4 = res[i][<span class="number">4</span>] - res[i][<span class="number">1</span>] - res[i][<span class="number">5</span>] + res[i][<span class="number">2</span>];</span><br><span class="line">    <span class="type">int</span> s5 = res[i][<span class="number">5</span>] - res[i][<span class="number">2</span>] - res[i][<span class="number">6</span>] + res[i][<span class="number">3</span>];</span><br><span class="line">    <span class="type">int</span> s6 = res[i][<span class="number">6</span>] - res[i][<span class="number">3</span>];</span><br><span class="line">    <span class="type">int</span> s7 = res[i][<span class="number">7</span>] - res[i][<span class="number">4</span>] - res[i][<span class="number">8</span>] + res[i][<span class="number">5</span>];</span><br><span class="line">    <span class="type">int</span> s8 = res[i][<span class="number">8</span>] - res[i][<span class="number">5</span>] - res[i][<span class="number">9</span>] + res[i][<span class="number">6</span>];</span><br><span class="line">    <span class="type">int</span> s9 = res[i][<span class="number">9</span>] - res[i][<span class="number">6</span>];</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    ans += <span class="number">1ll</span> * s1 * (s5 + s6 + s8 + s9);</span><br><span class="line">    ans += <span class="number">1ll</span> * s2 * (s5 + s6 + s8 + s9 + s4 + s7);</span><br><span class="line">    ans += <span class="number">1ll</span> * s3 * (s4 + s5 + s7 + s8);</span><br><span class="line">    ans += <span class="number">1ll</span> * s4 * (s5 + s6 + s8 + s9);</span><br><span class="line">    ans += <span class="number">1ll</span> * s5 * (s6 + s7 + s8 + s9);</span><br><span class="line">    ans += <span class="number">1ll</span> * s6 * (s7 + s8);</span><br><span class="line">    ans += <span class="number">1ll</span> * s5 * (s5 - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    std::cout &lt;&lt; ans &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">all the things you do</span></span><br><span class="line"><span class="comment">the words you say</span></span><br><span class="line"><span class="comment">will all come back to you</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
         </div>
 
         
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 并查集学习笔记</li>
+        <li><strong>标题:</strong> 题解：CF853C Boredom</li>
         <li><strong>作者:</strong> Floze3</li>
         <li><strong>创建于
-                :</strong> 2024-08-06 09:40:35</li>
+                :</strong> 2024-08-06 18:50:09</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-08-06 18:43:47
+                    :</strong> 2024-08-06 18:57:48
             </li>
         
         <li>
-            <strong>链接:</strong> https://floze3.github.io/2024/08/06/dsu/
+            <strong>链接:</strong> https://floze3.github.io/2024/08/06/cf853c-solution/
         </li>
         <li>
             <strong>
@@ -738,7 +819,11 @@
                     </li>
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">#并查集</a>&nbsp;
+                        <a href="/tags/Codeforces/">#Codeforces</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%82%B9/">#二维数点</a>&nbsp;
                     </li>
                 
             </ul>
@@ -752,18 +837,33 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/08/06/cf853c-solution/"
+                        href="/2024/08/06/interesting-problems/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">题解：CF853C Boredom</span>
+                                <span class="post-nav-title-item">妙妙题</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
                     </div>
                 
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/08/06/dsu/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">并查集学习笔记</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
                 
             </div>
         
@@ -831,8 +931,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
-        <div class="page-title">并查集学习笔记</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E8%8C%83%E4%BB%A3%E7%A0%81"><span class="nav-text">示范代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-text">带权并查集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%8D%E7%B1%BB%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-text">种类并查集</span></a></li></ol>
+        <div class="page-title">题解：CF853C Boredom</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E7%AE%80%E8%BF%B0"><span class="nav-text">思路简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-text">代码</span></a></li></ol>
 
     </div>
 </div>
